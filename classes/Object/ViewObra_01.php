@@ -1,5 +1,5 @@
 <?php
-
+require_once 'foto.php';
 class ViewObra_01 {
     private $imagem;
     private $genero;

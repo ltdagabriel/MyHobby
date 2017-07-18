@@ -10,6 +10,7 @@ class Especificacao {
   private $sinopse;
   private $titulo;
   private $titulo_oficial;
+  private $estudio;
   public function __construct() {
       $this->genero = array();
   }
@@ -70,5 +71,12 @@ class Especificacao {
 
   public function getTitulo_oficial() {
     return $this->titulo_oficial;
+  }
+  public function setEstudio($estudio) {
+      $this->estudio=$estudio;
+  }
+
+  public function getEstudio() {
+    return $this->estudio;
   }
 }

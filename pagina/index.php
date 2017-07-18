@@ -4,7 +4,7 @@ include_once getObject('ViewObra_01');
 ?>
 <div class="col-sm-9">
     <?php
-    $objeto=new ViewObra_01(/**busca do BD**/);
+    $objeto/**=new ViewObra_01(busca do BD)**/;
     for($i=0;$i<count($objeto);$i++){
         
     ?>

@@ -82,7 +82,7 @@ CREATE TABLE Video (
 ALTER TABLE Video ADD CONSTRAINT PK_Video PRIMARY KEY (codigo);
 
 
-CREATE TABLE Anime (
+CREATE TABLE Obra (
  codigo INT NOT NULL AUTO_INCREMENT,
  validacao varchar(5) DEFAULT 'false',
  comentario INT,
@@ -91,7 +91,7 @@ CREATE TABLE Anime (
  unique key (codigo)
 );
 
-ALTER TABLE Anime ADD CONSTRAINT PK_Anime PRIMARY KEY (codigo);
+ALTER TABLE Obra ADD CONSTRAINT PK_Anime PRIMARY KEY (codigo);
 
 
 CREATE TABLE Episodio (
@@ -113,6 +113,9 @@ CREATE TABLE Especificacao (
  imagem INT,
  trailer INT,
  genero INT,
+ sinopse TEXT,
+ titulo TEXT,
+ titulo_oficial TEXT,
  estudio INT
 );
 
@@ -132,8 +135,8 @@ ALTER TABLE Video ADD CONSTRAINT FK_Video_0 FOREIGN KEY (legenda) REFERENCES Leg
 ALTER TABLE Video ADD CONSTRAINT FK_Video_1 FOREIGN KEY (audio) REFERENCES Idioma (codigo);
 
 
-ALTER TABLE Anime ADD CONSTRAINT FK_Anime_0 FOREIGN KEY (comentario) REFERENCES Comentario (codigo);
-ALTER TABLE Anime ADD CONSTRAINT FK_Anime_1 FOREIGN KEY (adicionado_by) REFERENCES usuario (codigo);
+ALTER TABLE Obra ADD CONSTRAINT FK_Obra_0 FOREIGN KEY (comentario) REFERENCES Comentario (codigo);
+ALTER TABLE Obra ADD CONSTRAINT FK_Obra_1 FOREIGN KEY (adicionado_by) REFERENCES usuario (codigo);
 
 
 ALTER TABLE Episodio ADD CONSTRAINT FK_Episodio_0 FOREIGN KEY (codigo_anime) REFERENCES Anime (codigo);
