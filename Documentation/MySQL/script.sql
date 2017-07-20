@@ -63,7 +63,8 @@ CREATE TABLE usuario (
  codigo INT NOT NULL AUTO_INCREMENT,
  login varchar(32) NOT NULL,
  password varchar(16) NOT NULL,
- unique key (codigo)
+ unique key (codigo),
+ unique key (login)
 );
 
 ALTER TABLE usuario ADD CONSTRAINT PK_usuario PRIMARY KEY (codigo);
@@ -85,9 +86,10 @@ ALTER TABLE Video ADD CONSTRAINT PK_Video PRIMARY KEY (codigo);
 CREATE TABLE Obra (
  codigo INT NOT NULL AUTO_INCREMENT,
  validacao varchar(5) DEFAULT 'false',
- comentario INT,
  adicionado DATETIME DEFAULT NOW(),
  adicionado_by INT,
+ titulo TEXT,
+ titulo_oficial TEXT,
  unique key (codigo)
 );
 
@@ -109,13 +111,10 @@ ALTER TABLE Episodio ADD CONSTRAINT PK_Episodio PRIMARY KEY (codigo_anime,codigo
 
 CREATE TABLE Especificacao (
  codigo_obra INT NOT NULL,
- lancamento DATETIME,
+ lancamento DATE,
  imagem INT,
  trailer INT,
- genero INT,
  sinopse TEXT,
- titulo TEXT,
- titulo_oficial TEXT,
  estudio INT
 );
 

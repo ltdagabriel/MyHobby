@@ -1,31 +1,35 @@
 <?php
 include_once getConexaoBD('conexao');
-include_once getObject('comentario');
-class ComentarioC {
+include_once getObject('usuario');
+class UsuarioC {
+    
+    private $con;
+    private $pdo;
     
     function __construct() {
         $this->con = new Conexao();
         $this->pdo = $this->con->Connect();
     }
     
-    public function cadastrar(Comentario $coment) {
+    public function cadastrar(Usuario $user) {
         try {
-            $stmt = $this->pdo->prepare("INSERT INTO Comentario(texto) VALUE (:texto)");
+            $stmt = $this->pdo->prepare("INSERT INTO usuario(login,password) VALUE (:login ,:senha)");
             $param = array(
-                ":texto" => $coment->getTexto()
+                ":login" => $user->getLogin(),
+                ":senha" => $user->getSenha()
             );
             
             $stmt->execute($param);
-            return getCode($coment->getTexto());             
+            return getCode($user->getLogin());             
         } catch (PDOException $ex) {
             echo " Error ComentarioC::cadastrar: {$ex->getMessage()} ";
         }
     }
-    public function getCode($texto) {
+    public function getCode($login) {
         try {
-            $stmt = $this->pdo->prepare("SELECT codigo FROM Comentario WHERE texto = :texto");
+            $stmt = $this->pdo->prepare("SELECT codigo FROM usuario WHERE login= :login");
             $param = array(
-                ":texto" => $texto
+                ":login" => $login
             );
             $stmt->execute($param); 
             

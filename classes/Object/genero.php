@@ -18,4 +18,12 @@ class Genero {
   public function getNome() {
     return $this->nome;
   }
+  
+  public function form() {
+      ?>
+      <label class="checkbox-inline">
+          <input type="checkbox" id="genero<?php echo $this->codigo; ?>" value="option<?php echo $this->codigo; ?>"> <?php echo $this->nome; ?>
+      </label>
+      <?php
+  }
 }

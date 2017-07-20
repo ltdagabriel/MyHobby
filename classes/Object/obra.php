@@ -1,5 +1,7 @@
 <?php
-require_once 'especificacao.php';
+require_once getObject('especificacao');
+require_once getObject('usuario');
+
 class Obra {
   private $codigo;
   private $especificacao;
@@ -7,6 +9,12 @@ class Obra {
   private $comentario;
   private $adicionado_by;
   private $adicionado;
+  private $titulo;
+  private $titulo_oficial;
+
+  public function __construct() {
+      $this->comentario=array();
+  }
 
   public function setEspecificacao(Especificacao $especificacao) {
       $this->especificacao=$especificacao;
@@ -48,11 +56,26 @@ class Obra {
     return $this->adicionado;
   }
 
-  public function setAdicionado_by($adicionado_by) {
+  public function setAdicionado_by(Usuario $adicionado_by) {
       $this->adicionado_by=$adicionado_by;
   }
 
   public function getAdicionado_by() {
     return $this->adicionado_by;
+  }
+  public function setTitulo($titulo) {
+      $this->titulo=$titulo;
+  }
+
+  public function getTitulo() {
+    return $this->titulo;
+  }
+
+  public function setTitulo_oficial($titulo_oficial) {
+      $this->titulo_oficial=$titulo_oficial;
+  }
+
+  public function getTitulo_oficial() {
+    return $this->titulo_oficial;
   }
 }

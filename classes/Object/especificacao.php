@@ -1,6 +1,7 @@
 <?php
-require_once 'genero.php';
-require_once 'foto.php';
+require_once getObject('genero');
+require_once getObject('foto');
+require_once getConexaoBD('genero');
 class Especificacao {
   
   private $lancamento;
@@ -8,8 +9,6 @@ class Especificacao {
   private $trailer;
   private $genero;
   private $sinopse;
-  private $titulo;
-  private $titulo_oficial;
   private $estudio;
   public function __construct() {
       $this->genero = array();
@@ -57,26 +56,33 @@ class Especificacao {
     return $this->sinopse;
   }
 
-  public function setTitulo($titulo) {
-      $this->titulo=$titulo;
-  }
-
-  public function getTitulo() {
-    return $this->titulo;
-  }
-
-  public function setTitulo_oficial($titulo_oficial) {
-      $this->titulo_oficial=$titulo_oficial;
-  }
-
-  public function getTitulo_oficial() {
-    return $this->titulo_oficial;
-  }
   public function setEstudio($estudio) {
       $this->estudio=$estudio;
   }
 
   public function getEstudio() {
     return $this->estudio;
+  }
+  
+  public function form(){
+      ?>
+      <div class="form-group row"><?php /** Data de Lancamento **/?>
+        <label for="date-lancamento" class="col-xs-2 col-form-label">Data de Lançamento</label>
+        <div class="col-xs-10">
+          <input class="form-control" type="date" value="<?php echo date('Y-m-d');?>" id="date-lancamento">
+        </div>
+      </div>
+      
+      <?php Foto::form();/** Foto **/?> 
+      <?php /** TRAILER **/ ?>
+      
+      <?php /** Lista de Genero **/
+      $genero= generoC::getAll();
+      for($i=0;$i<count($genero);$i++){
+          $genero[$i]->form();
+      }
+      ?>
+
+      <?php
   }
 }

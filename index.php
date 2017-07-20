@@ -24,7 +24,7 @@
          * de url inexistente sera encaminhado para a pagina de erro.
         **/
         $pagina = Url::getURL( 0 );
-
+        echo $pagina;
         if( !$pagina ){
             $pagina = "index";
         }
