@@ -6,15 +6,33 @@ Anime</title></head><body bgcolor=#ffffff text=#000000vlink=#330000 alink=#33004
 <p><a href="../../Diagrama de Classe v_1_0.html">Diagrama de Classe v_1_0</a></p><p></p><table width=100% cellspacing=0 cellpadding=0>
 <tr><td width=32% valign=top>
 <table border=0 width=100% cellpadding=0 cellspacing=0><tr><td bgcolor=#7dfff1><table border cellspacing=0 cellpadding=0 width=100%><tr><td>
-Object.Obra. <a href=../../Object/Obra/uml-obras.html>obras</a>
+Object.Obra. <a href=../../Object/Obra/uml-Obra.html>Obra</a>
 </td></tr><tr><td>
--<a href=../../Object/Obra/obras.html#codigo>codigo</a> :int<br>
--<a href=../../Object/Obra/obras.html#especificacao>especificacao</a> :<a href=../../Object/Obra/uml-Especificacoes.html>Especificacoes</a><br>
+-<a href=../../Object/Obra/Obra.html#codigo>codigo</a> :int<br>
+-<a href=../../Object/Obra/Obra.html#especificacao>especificacao</a> :<a href=../../Object/Obra/uml-Especificacao.html>Especificacao</a><br>
+-<a href=../../Object/Obra/Obra.html#validacao>validacao</a> :<a href=../../Object/Midia/uml-String.html>String</a><br>
+-<a href=../../Object/Obra/Obra.html#comentario>comentario</a> :<a href=../../Object/Social/uml-Comentario.html>Comentario</a><br>
+-<a href=../../Object/Obra/Obra.html#adicionado_by>adicionado_by</a> :<a href=../../Object/User/uml-Usuario.html>Usuario</a><br>
+-<a href=../../Object/Obra/Obra.html#adicionado>adicionado</a> :<a href=../../Object/Midia/uml-DateTime.html>DateTime</a><br>
+-<a href=../../Object/Obra/Obra.html#titulo>titulo</a> :<a href=../../Object/Midia/uml-String.html>String</a><br>
+-<a href=../../Object/Obra/Obra.html#titulo_oficial>titulo_oficial</a> :<a href=../../Object/Midia/uml-String.html>String</a><br>
 </td></tr><tr><td>
-+<a href=../../Object/Obra/obras.html#setEspecificacao(Object.Obra.Especificacoes)>setEspecificacao</a>(<a href=../../Object/Obra/uml-Especificacoes.html>Especificacoes</a> especificacao) :void<br>
-+<a href=../../Object/Obra/obras.html#getEspecificacao()>getEspecificacao</a>() :<a href=../../Object/Obra/uml-Especificacoes.html>Especificacoes</a><br>
-+<a href=../../Object/Obra/obras.html#setCodigo(int)>setCodigo</a>(int codigo) :void<br>
-+<a href=../../Object/Obra/obras.html#getCodigo()>getCodigo</a>() :int<br>
++<a href=../../Object/Obra/Obra.html#setEspecificacao(Object.Obra.Especificacao)>setEspecificacao</a>(<a href=../../Object/Obra/uml-Especificacao.html>Especificacao</a> especificacao) :void<br>
++<a href=../../Object/Obra/Obra.html#getEspecificacao()>getEspecificacao</a>() :<a href=../../Object/Obra/uml-Especificacao.html>Especificacao</a><br>
++<a href=../../Object/Obra/Obra.html#setCodigo(int)>setCodigo</a>(int codigo) :void<br>
++<a href=../../Object/Obra/Obra.html#getCodigo()>getCodigo</a>() :int<br>
++<a href=../../Object/Obra/Obra.html#setValidacao(int)>setValidacao</a>(int validacao) :void<br>
++<a href=../../Object/Obra/Obra.html#getValidacao()>getValidacao</a>() :int<br>
++<a href=../../Object/Obra/Obra.html#setComentario(Object.Social.Comentario)>setComentario</a>(<a href=../../Object/Social/uml-Comentario.html>Comentario</a> comentario) :void<br>
++<a href=../../Object/Obra/Obra.html#getComentario()>getComentario</a>() :<a href=../../Object/Social/uml-Comentario.html>Comentario</a><br>
++<a href=../../Object/Obra/Obra.html#setAdicionado(Object.Midia.DateTime)>setAdicionado</a>(<a href=../../Object/Midia/uml-DateTime.html>DateTime</a> adicionado) :void<br>
++<a href=../../Object/Obra/Obra.html#getAdicionado()>getAdicionado</a>() :<a href=../../Object/Midia/uml-DateTime.html>DateTime</a><br>
++<a href=../../Object/Obra/Obra.html#setAdicionado_by(Object.User.Usuario)>setAdicionado_by</a>(<a href=../../Object/User/uml-Usuario.html>Usuario</a> adicionado_by) :void<br>
++<a href=../../Object/Obra/Obra.html#getAdicionado_by()>getAdicionado_by</a>() :<a href=../../Object/User/uml-Usuario.html>Usuario</a><br>
++<a href=../../Object/Obra/Obra.html#setTitulo(Object.Midia.String)>setTitulo</a>(<a href=../../Object/Midia/uml-String.html>String</a> titulo) :void<br>
++<a href=../../Object/Obra/Obra.html#getTitulo()>getTitulo</a>() :<a href=../../Object/Midia/uml-String.html>String</a><br>
++<a href=../../Object/Obra/Obra.html#setTitulo_oficial(Object.Midia.String)>setTitulo_oficial</a>(<a href=../../Object/Midia/uml-String.html>String</a> titulo_oficial) :void<br>
++<a href=../../Object/Obra/Obra.html#getTitulo_oficial()>getTitulo_oficial</a>() :<a href=../../Object/Midia/uml-String.html>String</a><br>
 </td></tr></table></td></tr>
 </table>
 </td><td width=12 align=center valign=top>
@@ -23,10 +41,16 @@ Object.Obra. <a href=../../Object/Obra/uml-obras.html>obras</a>
 <table border=0 width=100% cellpadding=0 cellspacing=0><tr><td bgcolor=#7dfff1><table border cellspacing=0 cellpadding=0 width=100%><tr><td>
 Object.Obra. <a href=../../Object/Obra/Anime.html>Anime</a>
 </td></tr><tr><td>
--<a href=../../Object/Obra/Anime.html#codeVideo>codeVideo</a> :int<br>
+-<a href=../../Object/Obra/Anime.html#numero_temporada>numero_temporada</a> :int<br>
+-<a href=../../Object/Obra/Anime.html#obra>obra</a> :<a href=../../Object/Obra/uml-Obra.html>Obra</a><br>
+-<a href=../../Object/Obra/Anime.html#episodio>episodio</a> :<a href=../../Object/Obra/uml-Episodio.html>Episodio</a><br>
 </td></tr><tr><td>
-+<a href=../../Object/Obra/Anime.html#setCodeVideo(int)>setCodeVideo</a>(int codeVideo) :void<br>
-+<a href=../../Object/Obra/Anime.html#getCodeVideo()>getCodeVideo</a>() :int<br>
++<a href=../../Object/Obra/Anime.html#setNumero_temporada(int)>setNumero_temporada</a>(int numero_temporada) :void<br>
++<a href=../../Object/Obra/Anime.html#getNumero_temporada()>getNumero_temporada</a>() :int<br>
++<a href=../../Object/Obra/Anime.html#setObra(Object.Obra.Obra)>setObra</a>(<a href=../../Object/Obra/uml-Obra.html>Obra</a> obra) :void<br>
++<a href=../../Object/Obra/Anime.html#getObra()>getObra</a>() :<a href=../../Object/Obra/uml-Obra.html>Obra</a><br>
++<a href=../../Object/Obra/Anime.html#setEpisodio(Object.Obra.Episodio)>setEpisodio</a>(<a href=../../Object/Obra/uml-Episodio.html>Episodio</a> episodio) :void<br>
++<a href=../../Object/Obra/Anime.html#getEpisodio()>getEpisodio</a>() :<a href=../../Object/Obra/uml-Episodio.html>Episodio</a><br>
 </td></tr></table></td></tr>
 </table>
 </td><td width=12 align=center valign=top>

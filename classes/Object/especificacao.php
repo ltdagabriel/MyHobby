@@ -66,6 +66,8 @@ class Especificacao {
   
   public function form(){
       ?>
+      <fieldset>
+      <legend>Objeto Especificação</legend>
       <div class="form-group row"><?php /** Data de Lancamento **/?>
         <label for="date-lancamento" class="col-xs-2 col-form-label">Data de Lançamento</label>
         <div class="col-xs-10">
@@ -75,14 +77,27 @@ class Especificacao {
       
       <?php Foto::form();/** Foto **/?> 
       <?php /** TRAILER **/ ?>
-      
-      <?php /** Lista de Genero **/
-      $genero= generoC::getAll();
+      <div class="form-group row text-center"><?php  /** Lista de Genero **/?>
+          <legend>Lista de Genero Cadastrado</legend>
+      <?php
+      $genero=new generoC();
+      $genero= $genero->getAll();
       for($i=0;$i<count($genero);$i++){
           $genero[$i]->form();
       }
       ?>
-
-      <?php
+      </div>
+      
+      
+      <div class="form-group row"><?php /** Sinopse **/?>
+        <label for="date-lancamento" class="col-xs-2 col-form-label">Sinopse</label>
+        <div class="col-xs-10">
+            <textarea class="form-control" name="sinopse" rows="4">
+            </textarea>
+        </div>
+      </div>
+      </fieldset>
+          <?php
+      
   }
 }

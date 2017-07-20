@@ -32,7 +32,7 @@ class Foto {
     <fieldset>
       <legend>Objeto Foto</legend>
       <div class="form-group"><?php /** Endereço da Imagem **/?>
-        <label for="foto-url" class="col-xs-2 col-form-label">url</label>
+        <label for="foto-url" class="col-xs-2 col-form-label">URL</label>
         <div class="col-xs-10">
             <input type="url" class="form-control" id="foto-url" aria-describedby="urlHelp" placeholder="http://exemple.com/imagem.jpeg">
         </div>

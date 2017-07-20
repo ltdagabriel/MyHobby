@@ -36,7 +36,7 @@ class generoC {
     }
     function getAll(){
         try {
-            $stmt = $this->pdo->prepare("SELECT codigo,nome FROM genero");
+            $stmt = $this->pdo->prepare("SELECT codigo,nome FROM genero ORDER BY nome ASC");
             $vetor=array();
             $stmt->execute();
             while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
@@ -47,7 +47,7 @@ class generoC {
             }
             return $vetor;
         } catch (PDOException $ex) {
-            echo " Falha ao Retornar obra : {$ex->getMessage()} \n";
+            echo " Falha: ".__METHOD__." {$ex->getMessage()} ";
         }
     }
 }

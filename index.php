@@ -16,7 +16,7 @@
 <body>
 <?php include 'include/cabecalho.php';?>
   
-<div class="container text-center">    
+<div class="container">    
     <div class="row">
         <?php
         /**
@@ -24,7 +24,7 @@
          * de url inexistente sera encaminhado para a pagina de erro.
         **/
         $pagina = Url::getURL( 0 );
-        echo $pagina;
+        
         if( !$pagina ){
             $pagina = "index";
         }
