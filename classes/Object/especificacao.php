@@ -1,6 +1,7 @@
 <?php
 require_once getObject('genero');
 require_once getObject('foto');
+require_once getObject('video');
 require_once getConexaoBD('genero');
 class Especificacao {
   
@@ -76,7 +77,7 @@ class Especificacao {
       </div>
       
       <?php Foto::form();/** Foto **/?> 
-      <?php /** TRAILER **/ ?>
+      <?php Video::form(); /** TRAILER **/ ?>
       <div class="form-group row text-center"><?php  /** Lista de Genero **/?>
           <legend>Lista de Genero Cadastrado</legend>
       <?php
@@ -96,6 +97,8 @@ class Especificacao {
             </textarea>
         </div>
       </div>
+       <?php /** Estudio **/ ?>
+      
       </fieldset>
           <?php
       

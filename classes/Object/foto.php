@@ -29,7 +29,7 @@ class Foto {
   }
   public function form(){
       ?>
-    <fieldset>
+    <fieldset class="text-center">
       <legend>Objeto Foto</legend>
       <div class="form-group"><?php /** Endereço da Imagem **/?>
         <label for="foto-url" class="col-xs-2 col-form-label">URL</label>
