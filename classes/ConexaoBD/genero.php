@@ -19,7 +19,7 @@ class generoC {
             
             return  $stmt->fetch(PDO::FETCH_ASSOC)['codigo'];
         } catch (PDOException $ex) {
-            echo " Falha: ".__METHOD__." local: ".__FILE__." {$ex->getMessage()} ";
+            echo " Falha: ".__METHOD__." local: ".__FILE__." {$ex->getMessage()} ".PHP_EOL;
         }
     }
     function cadastrar(Genero $genero){
@@ -31,12 +31,16 @@ class generoC {
             $stmt->execute($param);
             return getCode($genero->getNome());            
         } catch (PDOException $ex) {
-            echo " Falha: ".__METHOD__." local: ".__FILE__." {$ex->getMessage()} ";
+            echo " Falha: ".__METHOD__." local: ".__FILE__." {$ex->getMessage()} ".PHP_EOL;
         }
     }
-    function getAll(){
+    function get($arg){
         try {
-            $stmt = $this->pdo->prepare("SELECT codigo,nome FROM genero ORDER BY nome ASC");
+            $where='';
+            if($arg!=""){
+                $where="codigo_obra = ".$arg;
+            }
+            $stmt = $this->pdo->prepare("SELECT distinct(codigo),nome FROM genero,listgenero WHERE codigo = codigo_genero and ".$where." ORDER BY nome ASC");
             $vetor=array();
             $stmt->execute();
             while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
@@ -47,7 +51,7 @@ class generoC {
             }
             return $vetor;
         } catch (PDOException $ex) {
-            echo " Falha: ".__METHOD__." {$ex->getMessage()} ";
+            echo " Falha: ".__METHOD__." local: ".__FILE__." {$ex->getMessage()} ".PHP_EOL;
         }
     }
 }

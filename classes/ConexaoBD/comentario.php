@@ -18,7 +18,7 @@ class ComentarioC {
             $stmt->execute($param);
             return getCode($coment->getTexto());             
         } catch (PDOException $ex) {
-            echo " Error ComentarioC::cadastrar: {$ex->getMessage()} ";
+            echo " Falha: ".__METHOD__." local: ".__FILE__." {$ex->getMessage()} ".PHP_EOL;
         }
     }
     public function getCode($texto) {
@@ -31,7 +31,7 @@ class ComentarioC {
             
             return  $stmt->fetch(PDO::FETCH_ASSOC)['codigo'];
         } catch (PDOException $ex) {
-            echo " Error ComentarioC::cadastrar: {$ex->getMessage()} ";
+            echo " Falha: ".__METHOD__." local: ".__FILE__." {$ex->getMessage()} ".PHP_EOL;
         }
     }
 }

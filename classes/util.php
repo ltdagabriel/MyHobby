@@ -86,4 +86,19 @@ function sanitize($param){
     $string = preg_replace( array( '/[ ]/' , '/[^A-Za-z0-9\-]/' ) , array( '' , '' ) , $string );
     return $string;
 }
+function arruma($texto){
+    return  mb_convert_case(strtr($texto,array( "_" =>" ")), MB_CASE_TITLE, "UTF-8");
+}
+class Project{
+	private $projctname;
+	
+		public function __construct(){
+		$this->projctname="My Hobby";
+		}
+		public function getName(){
+		return $this->projctname;
+		}
+		
+}
+$projeto=new Project();
 ?>

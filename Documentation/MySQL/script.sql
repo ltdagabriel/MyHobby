@@ -1,7 +1,7 @@
 drop schema if exists MyHobby;
 create schema MyHobby;
+ALTER DATABASE MyHobby CHARACTER SET utf8 COLLATE utf8_general_ci;
 use MyHobby;
-
 CREATE TABLE Estudio (
  codigo INT NOT NULL UNIQUE AUTO_INCREMENT,
  nome TEXT
@@ -87,10 +87,18 @@ ALTER TABLE Adicionado_obra ADD CONSTRAINT PK_Adicionado_obra PRIMARY KEY (codig
 
 CREATE TABLE Anime (
  codigo INT NOT NULL,
- numero_temporada INT
+ numero_temporada INT,
+ lancamento DATE
 );
 
 ALTER TABLE Anime ADD CONSTRAINT PK_Anime PRIMARY KEY (codigo);
+
+CREATE TABLE Light_novel (
+ codigo INT NOT NULL,
+ lancamento DATE
+);
+
+ALTER TABLE Light_novel ADD CONSTRAINT PK_Light_Novel PRIMARY KEY (codigo);
 
 
 CREATE TABLE Comentario (
@@ -108,6 +116,7 @@ CREATE TABLE Episodio (
  codigo INT NOT NULL UNIQUE AUTO_INCREMENT,
  codigo_video INT NOT NULL,
  numero_episodio INT NOT NULL,
+ nome_episodio TEXT,
  lancado DATE,
  data_update DATETIME
 );
@@ -118,9 +127,9 @@ ALTER TABLE Episodio ADD CONSTRAINT PK_Episodio PRIMARY KEY (codigo);
 CREATE TABLE Especificacao (
  codigo_obra INT NOT NULL,
  lancamento DATETIME,
- auto_increment_0 INT,
+ imagem INT,
  trailer INT,
- auto_increment_1 INT,
+ estudio INT,
  sinopse TEXT
 );
 
@@ -180,9 +189,9 @@ ALTER TABLE Episodio ADD CONSTRAINT FK_Episodio_0 FOREIGN KEY (codigo_video) REF
 
 
 ALTER TABLE Especificacao ADD CONSTRAINT FK_Especificacao_0 FOREIGN KEY (codigo_obra) REFERENCES Obra (codigo);
-ALTER TABLE Especificacao ADD CONSTRAINT FK_Especificacao_1 FOREIGN KEY (auto_increment_0) REFERENCES Foto (codigo);
+ALTER TABLE Especificacao ADD CONSTRAINT FK_Especificacao_1 FOREIGN KEY (imagem) REFERENCES Foto (codigo);
 ALTER TABLE Especificacao ADD CONSTRAINT FK_Especificacao_2 FOREIGN KEY (trailer) REFERENCES Video (codigo);
-ALTER TABLE Especificacao ADD CONSTRAINT FK_Especificacao_3 FOREIGN KEY (auto_increment_1) REFERENCES Estudio (codigo);
+ALTER TABLE Especificacao ADD CONSTRAINT FK_Especificacao_3 FOREIGN KEY (estudio) REFERENCES Estudio (codigo);
 
 
 ALTER TABLE ListEpisodio ADD CONSTRAINT FK_ListEpisodio_0 FOREIGN KEY (codigo_episodio) REFERENCES Episodio (codigo);
@@ -200,28 +209,56 @@ ALTER TABLE Perfil ADD CONSTRAINT FK_Perfil_1 FOREIGN KEY (foto) REFERENCES Foto
 ALTER TABLE Adicionado_episodio ADD CONSTRAINT FK_Adicionado_episodio_0 FOREIGN KEY (codigo_episodio) REFERENCES Episodio (codigo);
 ALTER TABLE Adicionado_episodio ADD CONSTRAINT FK_Adicionado_episodio_1 FOREIGN KEY (codigo_usuario) REFERENCES usuario (codigo);
 
-INSERT INTO genero (nome) VALUES 
-('Ecchi'),
-('Ação'),
-('Aventura'),
-('Faroeste'),
-('Romance'),
-('Drama'),
-('Comédia'),
-('Paródia'),
-('Sci-Fi'),
-('Terror'),
-('Guerra'),
-('Misterio'),
-('Games'),
-('Esportes'),
-('Artes Marciais'),
-('Magia'),
-('Magical Girfriend'),
-('Fantasia'),
-('Vida Escolar'),
-('Shõjo'),
-('Josei'),
-('Shounen'),
-('Seinen'),
-('Slice-of-life');
+INSERT INTO genero (codigo,nome) VALUES 
+(1,'Ecchi'),
+(2,'Ação'),
+(3,'Aventura'),
+(4,'Faroeste'),
+(5,'Romance'),
+(6,'Drama'),
+(7,'Comédia'),
+(8,'Paródia'),
+(9,'Sci-Fi'),
+(10,'Terror'),
+(11,'Guerra'),
+(12,'Misterio'),
+(13,'Games'),
+(14,'Esportes'),
+(15,'Artes Marciais'),
+(16,'Magia'),
+(17,'Magical Girfriend'),
+(18,'Fantasia'),
+(19,'Vida Escolar'),
+(20,'Shõjo'),
+(21,'Josei'),
+(22,'Shounen'),
+(23,'Seinen'),
+(24,'Slice-of-life'),
+(25,'Harem'),
+(26,'Mecha'),
+(27,'Escolar');
+
+INSERT INTO obra (codigo,titulo,titulo_oficial) value (1,"Knight's and Magic","ナイツ＆マジック");
+INSERT INTO Light_novel (codigo,lancamento) value (1,"2014-09-17");
+INSERT INTO anime (codigo,lancamento,numero_temporada) value (1,"2017-07-02",1);
+INSERT INTO foto(codigo,url,legenda) value (1,"http://4.bp.blogspot.com/-yEYZ94e9WSU/VB8AjpDyhzI/AAAAAAAAAY4/2_4dQ-M-cb4/s1600/71192.jpg","knights and Magic");
+INSERT INTO foto(codigo,url,legenda) value (2,"https://upload.wikimedia.org/wikipedia/commons/b/b8/No_foto.svg","no-image");
+INSERT INTO video(codigo,url) value(1,"https://www.youtube.com/watch?v=p4gSzsfTsFA");
+INSERT INTO estudio(codigo,nome) value (1,"Square Enix");
+INSERT INTO especificacao(codigo_obra,lancamento,imagem,trailer,estudio,sinopse) value (1,"2013-01-30",1,1,1,"Um gênio da programação e otaku fanático por mechas renascem num mundo de cavaleiros e magia, onde gigantescos robôs chamados de Silhouette Knights correm por toda parte! Renascido como Ernesti Echevalier, ele usa seu vasto conhecimento de máquinas e programação para fazer o robô supremo. Contudo, suas ações produzem resultados inesperados?! Os sonhos de um fanático de mechas vai mudar o mundo!");
+INSERT INTO usuario(codigo,login,password) value (1,"ltdagabriel","123456");
+INSERT INTO perfil value (1,"Bossum",2);
+INSERT INTO adicionado_obra value (1,1,"2017-08-01 16:09:00");
+INSERT INTO listgenero(codigo_genero,codigo_obra) values 
+(2,1),
+(3,1),
+(7,1),
+(18,1),
+(25,1),
+(26,1),
+(16,1),
+(5,1),
+(27,1);
+insert into video(codigo,url) values (2,"https://v.vrv.co/evs/3778de0dc3bca8751a6dbc966528b130/assets/25a9667cd364879dd8f8ee13173ba62e_3267532.mp4/index-v1-a1.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly92LnZydi5jby9ldnMvMzc3OGRlMGRjM2JjYTg3NTFhNmRiYzk2NjUyOGIxMzAvKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTUwMTg1ODgxMX19fV19&Signature=ARn7aJL6MXyEh9010XMuQeoF75KdzZKpFYu5eG6Mhxyu7cimBzxoyUGQDXNwpDYFXdngBeKDGtXMLYPH36z1nRwc8PhYvRYYieIZ7ojo1v8Zj~gPThPI~bUvxGgcS1tRrn4Qoe7gJdprHMpMAyeldsRnnVdsSSC5NrAG1~Tl3q8VzVAaSzuZUVhN~LchB~na0vtf665vPAaDPhdlfrj9L90PpJCA8EFhFkwMXMRj7Q9aPJG9ODNWaXC1I-6ARbtD94j0DJ9SCccQu2TL~RgxTJr5gnJ5SgLSdMMhB2uVd8wPIXfmPHMUVGePanMizehZJ5Q2-oabSGIXV~fbG9p1Kg__&Key-Pair-Id=APKAJKQQ2INNHTYFB44A");
+INSERT INTO episodio(codigo,codigo_video,numero_episodio,lancado,nome_episodio) values (1,2,1,"2017-07-02","Robots & Fantasy");
+INSERT INTO listepisodio(codigo_episodio,codigo_anime) values (1,1);

@@ -22,7 +22,7 @@ class UsuarioC {
             $stmt->execute($param);
             return getCode($user->getLogin());             
         } catch (PDOException $ex) {
-            echo " Error ComentarioC::cadastrar: {$ex->getMessage()} ";
+            echo " Falha: ".__METHOD__." local: ".__FILE__." {$ex->getMessage()} ".PHP_EOL;
         }
     }
     public function getCode($login) {
@@ -35,7 +35,7 @@ class UsuarioC {
             
             return  $stmt->fetch(PDO::FETCH_ASSOC)['codigo'];
         } catch (PDOException $ex) {
-            echo " Error ComentarioC::cadastrar: {$ex->getMessage()} ";
+            echo " Falha: ".__METHOD__." local: ".__FILE__." {$ex->getMessage()} ".PHP_EOL;
         }
     }
 }

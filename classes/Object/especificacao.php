@@ -2,10 +2,12 @@
 require_once getObject('genero');
 require_once getObject('foto');
 require_once getObject('video');
+require_once getObject('estudio');
 require_once getConexaoBD('genero');
 class Especificacao {
   
   private $lancamento;
+  private $codigo;
   private $imagem;
   private $trailer;
   private $genero;
@@ -39,10 +41,8 @@ class Especificacao {
     return $this->trailer;
   }
 
-  public function setGenero(Genero $genero) {
-      for($i=0;$i<count($genero);$i++){
-          array_push($this->genero, $genero[$i]);
-      }
+  public function setGenero($genero) {
+      $this->genero=$genero;
   }
 
   public function getGenero() {
@@ -64,7 +64,14 @@ class Especificacao {
   public function getEstudio() {
     return $this->estudio;
   }
-  
+  public function setCodigo($code) {
+      $this->codigo=$code;
+  }
+  public function getCodigo(){
+      return $this->codigo;
+  }
+
+
   public function form(){
       ?>
       <fieldset>
@@ -82,7 +89,7 @@ class Especificacao {
           <legend>Lista de Genero Cadastrado</legend>
       <?php
       $genero=new generoC();
-      $genero= $genero->getAll();
+      $genero= $genero->get("");
       for($i=0;$i<count($genero);$i++){
           $genero[$i]->form();
       }
@@ -102,5 +109,36 @@ class Especificacao {
       </fieldset>
           <?php
       
+  }
+  public function info() {
+      $genero= $this->getGenero();
+      ?>
+      <!-- Portfolio Item Row -->
+        <div class="row">
+            <div class="col-md-6"> <img class="img-responsive" src="<?php echo $this->getImagem()->getUrl() ?>" alt=""> </div>
+          <div class="col-md-6 col-lg-6">
+            <h3>Especificação</h3>
+            <p><?php echo $this->getSinopse();?></p>
+            <h4>Lançado - <?php echo date("l, d F Y",strtotime($this->getLancamento()) );?></h4>
+                
+            <?php 
+            $label=count($genero);
+            $ruler=count($genero)/$label;
+            $sobra=count($genero)%$label;
+            for($j=0;$j< $label;$j++){?>
+            <ul class=" col-xs-6 col-sm-3 col-lg-3 col-md-3 text-center">
+                <?php
+                for($i=0+($sobra&&$j!=0?1:0);$i<$ruler;$i++){
+                    $genero[$i+($ruler*$j)]->info();
+                }
+                ?>
+            </ul>
+            <?php }?>
+            
+          </div>
+            
+        </div>
+        <!-- /.row -->
+        <?php
   }
 }

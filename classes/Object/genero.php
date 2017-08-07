@@ -26,4 +26,7 @@ class Genero {
       </label>
       <?php
   }
+  public function info(){
+      echo "<li class='list-group-item list-group-item-success'>".$this->getNome()."</li>";
+  }
 }
