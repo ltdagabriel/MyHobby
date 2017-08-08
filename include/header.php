@@ -30,19 +30,16 @@ function gerar_menu_by_diretorio($pasta){
     {
         for($i=2; $i< count($file);$i++)//lista o menu
         {
-            if($file[$i]!='home.php'){
-                if(preg_match("/.php/",$file[$i])){
-                    topico( $file[$i],$pasta);
-                }
+            if(excessoes($file[$i])){
+                 $file[$i]=strtr( $file[$i], array(".php" => "" ));
+                ?>
+                <li> <a href="<?php echo "/MyHobby/".$file[$i];?>"> <?php echo arruma($file[$i]);?> </a> </li>
+                <?php
             }
         }
     }
+}   
+function excessoes($file){
+    return $file!='home.php' && $file!='folder.php';
 }
-function topico($file,$pasta){
-    $file=strtr( $file, array(".php" => "" ));
-    
-    ?>
-<li> <a href="<?php echo "/MyHobby/".$file;?>"> <?php echo ucfirst(strtr($file,array("_" => " ")));?> </a> </li>
-<?php    
-        }    
 

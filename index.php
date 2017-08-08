@@ -12,15 +12,16 @@
 <link rel="shortcut icon" href="/MyHobby/Imagens/favicon.jpg" type="image/x-icon" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Bootstrap Core CSS -->
-<link href="/Myhobby/css/bootstrap.min.css" rel="stylesheet">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<!-- Custom CSS -->
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <link href="/Myhobby/css/portfolio-item.css" rel="stylesheet">
-<link href="/Myhobby/bootstrap/css/theme.css" rel="stylesheet">
+<link href="/Myhobby/css/mystyle.css" rel="stylesheet">
+<link href="/Myhobby/css/theme.css" rel="stylesheet">
 
-<!-- Mynha CSS -->
-<link href="/MyHobby/css/mystyle.css" rel="stylesheet" type="text/css" />
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,20 +41,39 @@
         **/
         $pagina = Url::getURL( 0 );
         	$pagina=strtr($pagina,array(".php" => ""));
-        if( !$pagina ){
-            $pagina = "home";// Pagina inicial por hora
+        try{
+            if( !$pagina ){
+                $pagina = "home";// Pagina inicial por hora
+            }
+            $page=false;
+            $load=scandir("pagina/");
+            for($i=2; $i< count($load) ;$i++){
+                if(!preg_match("/.php/",$load[$i])){
+                    if($load[$i]== $pagina){
+                        $page='pagina/folder.php';
+                    }
+                }
+            }
+            if($page){
+                require $page;
+            }
+            else if( file_exists( "pagina/" . $pagina . ".php" ) ){
+                   require "pagina/" . $pagina . ".php";            
+
+               }else{
+               header('Location: /MyHobby/');
+                 exit;
+               }
         }
-        if( file_exists( "pagina/" . $pagina . ".php" ) ){
-            require "pagina/" . $pagina . ".php";            
-        
-        }else{
-	header('Location: /MyHobby/');
-	  exit;
+        catch (Exception $e)
+        {
+               
         }
         ?>
 </div>
 <hr>
 <?php include 'include/rodape.php';?>
+
 
 <!-- jQuery --> 
 <script src="/Myhobby/js/jquery.js"></script> 
